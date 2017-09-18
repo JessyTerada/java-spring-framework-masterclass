@@ -8,31 +8,10 @@
 	http://www.springframework.org/schema/context    
 	http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<!-- load the properties file: sport.properties -->
-	<context:property-placeholder location="classpath:sport.properties"/>
+	<!-- add entry to enable component scanning -->
+	<context:component-scan base-package="com.mastercard"/>
 	
-	<!-- define the dependency -->
-	<bean id="myFortuneService"
-		class="com.mastercard.HappyFortuneService">
-	</bean>
 	
-	<bean id="myCoach"
-		class="com.mastercard.TrackCoach">
-		
-		<!-- set up constructor injection -->
-		<constructor-arg ref="myFortuneService"/>
-	</bean>
-	
-	<bean id="myCricketCoach"
-		class="com.mastercard.CricketCoach">
-		
-		<!-- set up setter injection -->
-		<property name="fortuneService" ref="myFortuneService"/>
-		
-		<!-- inject literal values -->
-		<property name="emailAddress" value="${foo.email}"/>
-		<property name="team" value="${foo.team}"/>
-	</bean>
 </beans>
 
   
