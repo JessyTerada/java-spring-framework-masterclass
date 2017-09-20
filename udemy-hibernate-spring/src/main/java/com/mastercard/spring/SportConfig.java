@@ -5,8 +5,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import com.mastercard.spring.SwimCoach;
-
 @Configuration
 @ComponentScan("com.mastercard.spring")
 @PropertySource("classPath:sport.properties")
