@@ -1,14 +1,15 @@
-package com.mastercard.hibernate.demo4;
+package com.mastercard.hibernate.demo5;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.mastercard.hibernate.demo.entity4.Instructor;
-import com.mastercard.hibernate.demo.entity4.InstructorDetail;
-import com.mastercard.hibernate.demo.entity4.Course;
+import com.mastercard.hibernate.demo.entity5.Instructor;
+import com.mastercard.hibernate.demo.entity5.InstructorDetail;
+import com.mastercard.hibernate.demo.entity5.Review;
+import com.mastercard.hibernate.demo.entity5.Course;
 
-public class FetchJoinDemo {
+public class GetCourseAndReviewsDemo {
 
 	public static void main(String[] args) {
 
@@ -18,6 +19,7 @@ public class FetchJoinDemo {
 								.addAnnotatedClass(Instructor.class)
 								.addAnnotatedClass(InstructorDetail.class)
 								.addAnnotatedClass(Course.class)
+								.addAnnotatedClass(Review.class)
 								.buildSessionFactory();
 		
 		//create session 
@@ -27,25 +29,18 @@ public class FetchJoinDemo {
 			//start a transaction
 			session.beginTransaction();
 			
-			//get the instructor from db
-			int theId = 1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			//get the course
+			int theId = 10;
+			Course tempCourse = session.get(Course.class, theId);
 			
-			System.out.println("Instructor: " + tempInstructor);
+			//print the course
+			System.out.println(tempCourse);
 			
-			//get courses for the instructor
-			System.out.println("Courses: " + tempInstructor.getCourses());
+			//print the course review
+			System.out.println(tempCourse.getReviews());
 			
 			//commit transaction
 			session.getTransaction().commit();	
-
-			//close the session
-			session.close();
-			
-			System.out.println("Wipro: The session is now closed!");
-			
-			//get courses for the instructor
-			System.out.println("Wipro: Courses: " + tempInstructor.getCourses());
 			
 			System.out.println("Done!");
 		}
